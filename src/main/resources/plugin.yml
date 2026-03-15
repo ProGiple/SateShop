@@ -1,0 +1,27 @@
+name: SateShop
+version: '${project.version}'
+main: satespace.dev.progiple.sateshop.SateShop
+api-version: '1.16'
+depend:
+  - LunaSpring
+  - SateMenus
+  - SateJewels
+permissions:
+  sateshop.sale.category.<categ_id>.<sale%>:
+    default: false
+  sateshop.sale.item.<item_id>.<sale%>:
+    default: false
+  sateshop.sale.all.<sale%>:
+    default: false
+  sateshop.blocked:
+    default: false
+  sateshop.reload:
+    default: op
+  sateshop.openother:
+    default: op
+commands:
+  sateshop:
+    aliases:
+      - shop
+      - sshop
+      - shops

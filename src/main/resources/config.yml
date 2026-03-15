@@ -1,0 +1,11 @@
+popularStatus: '&7« {S}Популярно &7»'
+mainCategory: example
+messages:
+  reload: "Плагин успешно перезагружен!"
+  blocked: "На данный момент магазин закрыт!"
+  categoryIsNull: "Категория [id] не существует!"
+  playerIsNull: "Игрока [name] не существует!"
+  hasntJewels: "Для покупки товара '[name]' нужно [cost] звёзд!"
+  buyCertificate: "Вы успешно подарили сертификат на [cost] звёзд игроку [target]!"
+  getCertificate: "Игрок [buyer] подарил вам сертификат на [cost] звёзд!"
+  successBuy: "Вы успешно купили товар [name] x[amount] за [cost] звёзд!"

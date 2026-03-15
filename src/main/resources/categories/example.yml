@@ -1,0 +1,11 @@
+name: "Пример категории"
+description: []
+items:
+  example:
+    material: IRON_INGOT
+    name: ""
+    description: []
+    enchanted: false
+    baseHead: ""
+    cost: 109
+    commands: []
