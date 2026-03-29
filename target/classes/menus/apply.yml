@@ -1,0 +1,17 @@
+title: "Подтверждение покупки"
+rows: 4
+decorations: {}
+items:
+  confirm:
+    material: LIME_STAINED_GLASS_PANE
+    displayName: "Подтвердить"
+    lore: []
+    slots:
+      - 0-8
+  cancel:
+    material: RED_STAINED_GLASS_PANE
+    displayName: "Отменить"
+    lore: []
+    slots:
+      - 9-17
+  infoItemSlot: 22

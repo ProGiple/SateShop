@@ -1,8 +1,10 @@
 package satespace.dev.progiple.sateshop.data;
 
 import lombok.experimental.UtilityClass;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.novasparkle.lunaspring.API.database.AsyncExecutor;
+import org.novasparkle.lunaspring.API.util.utilities.LunaMath;
 import satespace.dev.progiple.sateshop.menus.Category;
 import satespace.dev.progiple.sateshop.menus.ShopItem;
 
@@ -15,7 +17,11 @@ public class SQLManager {
     private final String transactionsTable;
     public final Set<String> topSellingItems = new HashSet<>();
     static {
-        asyncExecutor = new AsyncExecutor();
+        ConfigurationSection section = ConfigManager.getSqlSection();
+
+        asyncExecutor = new AsyncExecutor(section);
+        certificateTable = section.getString("certificateTable");
+        transactionsTable = section.getString("transactionsTable");
 
         asyncExecutor.executeSync("CREATE TABLE IF NOT EXISTS " + certificateTable +
                 "(uuid varchar(36) PRIMARY KEY, amount int);");
@@ -24,7 +30,7 @@ public class SQLManager {
     }
 
     public void initializeTopList() {
-        int maxItems = ;
+        int maxItems = LunaMath.getRandomInt(ConfigManager.getString("itemsListSize"));
 
         List<String> topSellingItemsList = asyncExecutor.executeQuery("SELECT CONCAT(categoryId, '.', itemId) as item_key," +
                 " SUM(cost) as total_cost" +

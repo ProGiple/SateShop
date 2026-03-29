@@ -1,0 +1,25 @@
+title: "&0Подарок для [player]"
+ifNullTitle: "&0Подарок игроку"
+rows: 6
+decorations: {}
+items:
+  first:
+    material: MAP
+    displayName: "Сертификат на 100 звёзд"
+    lore: []
+    cost: 100
+    slot: 0
+  second:
+    material: MAP
+    displayName: "Сертификат на 250 звёзд"
+    amount: 2
+    lore: [ ]
+    cost: 250
+    slot: 1
+  third:
+    material: MAP
+    displayName: "Сертификат на 500 звёзд"
+    amount: 3
+    lore: [ ]
+    cost: 500
+    slot: 2

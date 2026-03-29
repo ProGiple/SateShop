@@ -28,5 +28,17 @@ public final class SateShop extends LunaPlugin {
 
         SQLManager.initializeTopList();
         CommandInitializer.initialize(this, "#.subcommands");
+
+        this.createPlaceholder((p, s) -> {
+            if (s.equalsIgnoreCase("certificates")) {
+                return String.valueOf(SQLManager.getCertificatesCost(p.getUniqueId()));
+            }
+
+            if (s.equalsIgnoreCase("selling")) {
+                return String.valueOf(SQLManager.getSellingTotalCost(p.getUniqueId()));
+            }
+
+            return null;
+        });
     }
 }

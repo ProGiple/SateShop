@@ -2,6 +2,7 @@ package satespace.dev.progiple.sateshop.data;
 
 import lombok.experimental.UtilityClass;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.novasparkle.lunaspring.API.configuration.PluginConfig;
 import satespace.dev.progiple.sateshop.SateShop;
 
@@ -10,6 +11,10 @@ public class ConfigManager {
     private final PluginConfig config;
     static {
         config = new PluginConfig(SateShop.getPlugin());
+    }
+
+    public ConfigurationSection getSqlSection() {
+        return config.getSection("sql");
     }
 
     public void reload() {

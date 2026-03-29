@@ -1,6 +1,9 @@
 package satespace.dev.progiple.sateshop.menus.menus;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,18 +18,16 @@ import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.Animations;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
+@Getter @Setter
 public abstract class AShopMenu extends AMenu implements AnimatedMenu, Recreatable, Backable {
     protected final IConfig config;
-    private final List<IAnimation> animations;
     public final Recreatable recreatable;
+    private IAnimation playingAnimation;
     public AShopMenu(@NotNull Player player, IConfig config, @Nullable Recreatable recreatable) {
         super(player);
         this.config = config;
-        this.animations = new ArrayList<>();
 
         if (recreatable == null) {
             IMenu menu = MenuManager.getActiveMenu(player);
@@ -34,10 +35,17 @@ public abstract class AShopMenu extends AMenu implements AnimatedMenu, Recreatab
         }
         else
             this.recreatable = recreatable;
+    }
 
-        this.initialize(config.getString("title"),
+    protected void initializeInv() {
+        String title = config.getString("title");
+        this.initialize(title == null ? "" : this.initializeTitle(title),
                 (byte) (config.getInt("rows") * 9),
                 config.getSection("decorations"));
+    }
+
+    protected String initializeTitle(String defaultTitle) {
+        return defaultTitle;
     }
 
     @Override
@@ -48,8 +56,9 @@ public abstract class AShopMenu extends AMenu implements AnimatedMenu, Recreatab
     }
 
     @Override
-    public Collection<IAnimation> getPlayingAnimations() {
-        return animations;
+    public void onClick(InventoryClickEvent event) {
+        event.setCancelled(true);
+        super.onClick(event);
     }
 
     @Override

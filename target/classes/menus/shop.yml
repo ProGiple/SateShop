@@ -1,0 +1,47 @@
+title: "&0Магазин » [category]"
+selectedCategoryLines:
+  - " &b৹ &fКатегория выбрана"
+  - " "
+animations: []
+rows: 6
+decorations: {}
+items:
+  back:
+    material: STONE_BUTTON
+    displayName: "Обратно"
+    lore: []
+    slot: 45
+  category-example:
+    material: END_CRYSTAL
+    displayName: "Категория [name]"
+    lore:
+      - " "
+      - "Категория [name]:"
+      - "[description]"
+      - " "
+      - "[selected]"
+    slot: 1
+  selling:
+    order:
+      - 9-26
+    material: SUNFLOWER
+    displayName: "[name] x[amount][status]"
+    lore:
+      - " "
+      - "[description]"
+      - " "
+      - "Стоимость товара: [cost]"
+      - "Ваш баланс: [balance] &7(Бонусов: +[certificates])"
+      - " "
+    ifHasSale:
+      material: SUNFLOWER
+      displayName: "[name] x[amount][status]"
+      lore:
+        - " "
+        - " &b-=-=- &lСкидка [sale]%&b -=-=-"
+        - " "
+        - "[description]"
+        - " "
+        - "Стоимость товара: [cost]"
+        - "Ваш баланс: [balance] &7(Бонусов: +[certificates])"
+        - " "

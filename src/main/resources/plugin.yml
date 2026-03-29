@@ -19,6 +19,8 @@ permissions:
     default: op
   sateshop.openother:
     default: op
+  sateshop.setcertificates:
+    default: op
 commands:
   sateshop:
     aliases:

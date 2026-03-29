@@ -31,6 +31,15 @@ public class GiftCertificateMenu extends AShopMenu {
             ConfigurationSection section = itemsSection.getConfigurationSection(key);
             this.addItems(false, new BuyCertificateItem(section));
         }
+
+        this.initializeInv();
+    }
+
+    @Override
+    protected String initializeTitle(String defaultTitle) {
+        String name = target.getName();
+        if (name == null) return config.getString("ifNullTitle");
+        return defaultTitle.replace("[player]", name);
     }
 
     @Override

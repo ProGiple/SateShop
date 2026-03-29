@@ -18,6 +18,8 @@ import satespace.dev.progiple.sateshop.menus.ShopItem;
 import satespace.dev.progiple.sateshop.menus.menus.impl.ApplyMenu;
 import satespace.dev.progiple.sateshop.menus.menus.impl.CategoryMenu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiPredicate;
 
 public class SellingItem extends Item {
@@ -50,6 +52,7 @@ public class SellingItem extends Item {
         String statusName = isPopular.test(category, shopItem) ? "" : shopMenu.popularStatusName;
         String[] rpl = {
                 "status-%-" + statusName,
+                "amount-%-" + shopItem.amount(),
                 "name-%-" + shopItem.name(),
                 "category-%-" + category.name(),
                 "fullCost-%-" + shopItem.cost(),
@@ -61,7 +64,17 @@ public class SellingItem extends Item {
         };
 
         this.setDisplayName(Utils.setPlaceholders(shopMenu.getPlayer(), this.getDisplayName()), rpl);
-        this.replaceLore(l -> Utils.setPlaceholders(shopMenu.getPlayer(), Utils.applyReplacements(l, rpl)));
+
+        List<String> lore = new ArrayList<>();
+        for (String s : this.defaultLore) {
+            if (s.contains("[description]"))
+                lore.addAll(shopItem.description());
+            else
+                lore.add(s);
+        }
+
+        this.setLore(lore, rpl);
+        this.replaceLore(l -> Utils.setPlaceholders(shopMenu.getPlayer(), l));
     }
 
     @Override

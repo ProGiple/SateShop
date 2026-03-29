@@ -1,0 +1,23 @@
+sql:
+  url: 'jdbc:mysql://localhost:3306/test'
+  username: 'root'
+  password: '111111'
+  driverClass: 'com.mysql.cj.jdbc.Driver'
+  certificateTable: 'shop_certificates'
+  transactionsTable: 'shop_transactions'
+  poolSize: 10
+  maxRetries: 3
+  asyncThreadPoolSize: 10
+itemsListSize: 10
+popularStatus: ' &7« {S}Популярно &7»'
+mainCategory: example
+messages:
+  reload: "Плагин успешно перезагружен!"
+  blocked: "На данный момент магазин закрыт!"
+  categoryIsNull: "Категория [id] не существует!"
+  playerIsNull: "Игрока [name] не существует!"
+  hasntJewels: "Для покупки товара '[name]' нужно [cost] звёзд!"
+  buyCertificate: "Вы успешно подарили сертификат на [cost] звёзд игроку [target]!"
+  getCertificate: "Игрок [buyer] подарил вам сертификат на [cost] звёзд!"
+  successBuy: "Вы успешно купили товар [name] x[amount] за [cost] звёзд!"
+  setCertificates: "Вы успешно установили игроку [name] x[amount] сертификатов!"

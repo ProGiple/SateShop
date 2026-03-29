@@ -6,7 +6,7 @@
 
   <groupId>satespace.dev.progiple</groupId>
   <artifactId>SateShop</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
   <packaging>jar</packaging>
 
   <name>SateShop</name>
@@ -81,7 +81,7 @@
       <dependency>
           <groupId>com.github.ProGiple</groupId>
           <artifactId>SateMenus</artifactId>
-          <version>1.2.3</version>
+          <version>1.2.6</version>
           <scope>provided</scope>
       </dependency>
       <dependency>

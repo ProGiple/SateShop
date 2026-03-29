@@ -35,13 +35,19 @@ public class CategoryMenu extends AShopMenu {
     public final String popularStatusName;
     public final int certificates;
     public CategoryMenu(@NotNull Player player, @Nullable Category category, @Nullable Recreatable recreatable) {
-        super(player, new IConfig(SateShop.getPlugin().getDataFolder(), "menus/shop.yml"), recreatable);
+        super(player, new IConfig(SateShop.getPlugin().getDataFolder(), "menus/shop"), recreatable);
         this.certificates = SQLManager.getCertificatesCost(player.getUniqueId());
 
         if (category == null) category = Categories.getCategory();
         this.category = category;
 
         this.popularStatusName = ConfigManager.getString("popularStatus");
+        this.initializeInv();
+    }
+
+    @Override
+    protected String initializeTitle(String defaultTitle) {
+        return Utils.applyReplacements(defaultTitle, "category-%-" + category.name());
     }
 
     @Override
@@ -55,7 +61,7 @@ public class CategoryMenu extends AShopMenu {
             if (key.equalsIgnoreCase("back"))
                 item = new BackItem(itemSection);
             else if (key.startsWith("category-"))
-                item = new ToCategoryItem(itemSection);
+                item = new ToCategoryItem(itemSection, this);
             else if (key.startsWith("selling")) {
                 List<String> order = itemSection.getStringList("order");
                 List<Integer> slots = Utils.getSlotList(order);
@@ -96,6 +102,10 @@ public class CategoryMenu extends AShopMenu {
     public void onClick(InventoryClickEvent event) {
         if (prevent.isCancelled(event, event.getWhoClicked().getUniqueId())) return;
         super.onClick(event);
+    }
+
+    public List<String> getSelectedCategoryLines() {
+        return config.getStringList("selectedCategoryLines");
     }
 
     @Override

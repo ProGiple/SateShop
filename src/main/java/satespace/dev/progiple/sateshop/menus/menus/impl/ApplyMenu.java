@@ -38,6 +38,7 @@ public class ApplyMenu extends AShopMenu {
         this.cost = cost;
 
         this.category = category;
+        this.initializeInv();
         ConfigurationSection section = config.getSection("items");
 
         ConfigurationSection itemSection = section.getConfigurationSection("confirm");
@@ -62,7 +63,10 @@ public class ApplyMenu extends AShopMenu {
                     shopItem.description(),
                     shopItem.amount(),
                     (byte) infoSlot);
-            NBTManager.base64head(item.getItemStack(), shopItem.baseHead());
+            NBTManager.base64head(item.replaceLore(l -> l
+                    .replace("[cost]", String.valueOf(cost)))
+                    .getItemStack(), shopItem.baseHead());
+
             this.addItems(false, item);
         }
     }
@@ -96,7 +100,7 @@ public class ApplyMenu extends AShopMenu {
                 boolean restoreCertificatesFlag = certificates > 0;
                 leftCost -= certificates;
                 if (leftCost > 0) {
-                    SateShop.getSjapi().removeJewels(player, certificates);
+                    SateShop.getSjapi().removeJewels(player, leftCost);
                     certificates = 0;
                 }
                 else
